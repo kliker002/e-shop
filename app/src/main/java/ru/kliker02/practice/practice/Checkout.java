@@ -43,6 +43,8 @@ public class Checkout extends AppCompatActivity {
     LinearLayout lr;
     TextView total;
 
+    final String SHARED_PREF = "sharedpref";
+
     ArrayList<String> products, hmuch;
     Integer total_price;
 
@@ -90,7 +92,7 @@ public class Checkout extends AppCompatActivity {
     }
 
     public void setTVTotalPrice(TextView total_price, float price) {
-        SharedPreferences discount = getSharedPreferences("sharedpref", Context.MODE_PRIVATE);
+        SharedPreferences discount = getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE);
         price = price - price * (discount.getInt("discount", 1) / 100.0F);
 
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(

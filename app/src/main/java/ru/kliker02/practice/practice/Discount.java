@@ -26,6 +26,8 @@ public class Discount extends AppCompatActivity {
     SharedPreferences settings;
     EditText email;
 
+    final String SHARED_PREF = "sharedpref";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +58,7 @@ public class Discount extends AppCompatActivity {
         setDiscount();
     }
     public void setDiscount(){
-        settings = getSharedPreferences("sharedpref", Context.MODE_PRIVATE);
+        settings = getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE);
         SharedPreferences.Editor ed = settings.edit();
         ed.putInt("discount", 10);
         ed.apply();
