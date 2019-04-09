@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.media.Image;
 import android.os.Bundle;
 import android.print.PrintAttributes;
@@ -169,6 +170,9 @@ public class MainApp extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(),"Bill: $" + checkOut + "; You bought - " + purchases.get("item"+finalI), Toast.LENGTH_SHORT).show();
                             }
                         });
+                        buy.setBackgroundResource(R.drawable.buy_button);
+                        buy.setTextSize(20);
+                        buy.setTextColor(Color.WHITE);
                         lr.addView(buy);
 
                     }

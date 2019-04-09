@@ -37,7 +37,6 @@ import static ru.kliker02.practice.practice.R.id.lrl;
 //Парсинг цены не реализован
 public class Checkout extends AppCompatActivity {
 
-    Toolbar toolbar;
     Button cancel;
     ListView checkout_list;
     LinearLayout lr;
@@ -57,10 +56,8 @@ public class Checkout extends AppCompatActivity {
         total = new TextView(getApplicationContext());
         cancel = (Button) findViewById(R.id.cancel);
         checkout_list = (ListView) findViewById(R.id.checkout_list);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
         lr = (LinearLayout) findViewById(R.id.lrl);
 
-        toolbar.setTitle("Checkout");
 
         Intent intent = getIntent();
         products = (ArrayList<String>) intent.getSerializableExtra("products");
@@ -84,12 +81,22 @@ public class Checkout extends AppCompatActivity {
             sameValue.add("Product: " + products.get(i) + "; " + " Quantity: " + hmuch.get(i));
         }
         setTVTotalPrice(total, total_price);
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, sameValue);
+                android.R.layout.simple_list_item_1, android.R.id.text1, sameValue) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
 
+                View view = super.getView(position, convertView, parent);
+
+                TextView ListItemShow = (TextView) view.findViewById(android.R.id.text1);
+
+                ListItemShow.setTextColor(Color.WHITE);
+
+                return view;
+            }
+        };
         checkout_list.setAdapter(adapter);
-    }
+        }
 
     public void setTVTotalPrice(TextView total_price, float price) {
         SharedPreferences discount = getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE);

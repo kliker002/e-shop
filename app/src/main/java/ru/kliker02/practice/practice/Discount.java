@@ -32,14 +32,12 @@ public class Discount extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_discount);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         email = (EditText) findViewById(R.id.email);
 
         lr = (LinearLayout) findViewById(R.id.lrl);
         rl = (RelativeLayout) findViewById(R.id.rl);
-        setSupportActionBar(toolbar);
 
-        getImage();
+//        getImage();
     }
     public void getImage(){
         ImageView targetImageView = new ImageView(getApplicationContext());
@@ -55,7 +53,7 @@ public class Discount extends AppCompatActivity {
         lr.addView(targetImageView);
     }
     public void onClickDiscount(View v){
-        setDiscount();
+        if (email.getText().toString().contains("@")) setDiscount();
     }
     public void setDiscount(){
         settings = getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE);
